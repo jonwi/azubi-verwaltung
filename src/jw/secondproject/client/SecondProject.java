@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.cell.client.Cell;
-import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.cellview.client.CellList;
@@ -32,7 +31,7 @@ public class SecondProject implements EntryPoint {
 	private HorizontalPanel bodyWrapper = new HorizontalPanel();
 
 	private VerticalPanel body = new VerticalPanel();
-	
+
 	private VerticalPanel navigation = new VerticalPanel();
 
 	/**
@@ -44,8 +43,12 @@ public class SecondProject implements EntryPoint {
 		headline.add(new Label("Auszubildendensuche"));
 		mainPanel.add(bodyWrapper);
 		bodyWrapper.add(navigation);
-		bodyWrapper.add(body);		
-		
+		bodyWrapper.add(body);
+
+		if (this instanceof SecondProject) {
+
+		}
+
 		// Navigation
 		navigation.add(new Label("Navigation"));
 		// Suche
@@ -82,10 +85,10 @@ public class SecondProject implements EntryPoint {
 		searchCrit.add(vorname);
 		searchCrit.add(labelKlasse);
 		searchCrit.add(klasse);
-		searchCrit.add(labelMatrikelnummer); 
+		searchCrit.add(labelMatrikelnummer);
 		searchCrit.add(matrikelnummer);
 		searchCrit.add(vollzeit);
-		
+
 		search.add(searchCrit);
 		search.add(suchen);
 		return search;
@@ -107,15 +110,15 @@ public class SecondProject implements EntryPoint {
 
 		return listWrapper;
 	}
-	
-	 class StudentCell extends AbstractCell<Student> implements Cell<Student>{
+
+	class StudentCell extends AbstractCell<Student> implements Cell<Student> {
 
 		@Override
 		public void render(Context context, Student value, SafeHtmlBuilder sb) {
-			sb.append(context.getColumn());
+			sb.append(context.getIndex() + 1);
 			sb.appendEscaped(value.toString());
 		}
-		 
-	 }
-	
+
+	}
+
 }
