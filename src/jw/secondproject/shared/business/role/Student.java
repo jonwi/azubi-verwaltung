@@ -2,6 +2,11 @@ package jw.secondproject.shared.business.role;
 
 public class Student extends User {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String name;
 
 	private String vorname;
@@ -12,8 +17,20 @@ public class Student extends User {
 
 	private boolean vollzeit;
 
+	public Student() {
+		super();
+	}
+
 	public Student(int nr) {
 		super(nr);
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setVorname(String vorname) {
+		this.vorname = vorname;
 	}
 
 	public String getName() {

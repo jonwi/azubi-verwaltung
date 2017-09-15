@@ -39,7 +39,9 @@ public class SecondProject implements EntryPoint {
 	private FlowPanel navigation = new FlowPanel();
 
 	private StudentServiceAsync studentService = GWT.create(StudentService.class);
-	
+
+	private CellList<Student> studentList;
+
 	/**
 	 * This is the entry point method.
 	 */
@@ -70,6 +72,7 @@ public class SecondProject implements EntryPoint {
 		HorizontalPanel searchCrit = new HorizontalPanel();
 		Button suchen = new Button("Suchen");
 		suchen.addStyleName("btn btn-primary");
+		suchen.addClickHandler(ev -> getStudents());
 
 		CheckBox vollzeit = new CheckBox("Vollzeit");
 		vollzeit.setValue(true);
@@ -101,7 +104,7 @@ public class SecondProject implements EntryPoint {
 	private Panel initializeStudentList() {
 		// Liste initialisieren
 		StudentCell cell = new StudentCell();
-		CellList<Student> studentList = new CellList<>(cell);
+		studentList = new CellList<>(cell);
 		SingleSelectionModel<Student> selectionModel = new SingleSelectionModel<>();
 		studentList.setSelectionModel(selectionModel);
 		Label label = new Label();
@@ -128,18 +131,19 @@ public class SecondProject implements EntryPoint {
 		@Override
 		public void render(Context context, Student value, SafeHtmlBuilder sb) {
 			sb.appendHtmlConstant("<div class=\"container row\"><div class=\"col-1\">" + context.getColumn()
-					+ "</div><div class=\"col\">" + wrapDiv(wrapDiv(String.valueOf(value.getNr()), "col") + wrapDiv(value.getBetrieb(), "col") + wrapDiv(value.getName(), "col")
-					+ wrapDiv(value.getVorname(), "col"),"row") + "</div></div>");
+					+ "</div><div class=\"col\">"
+					+ wrapDiv(wrapDiv(String.valueOf(value.getNr()), "col") + wrapDiv(value.getBetrieb(), "col")
+							+ wrapDiv(value.getName(), "col") + wrapDiv(value.getVorname(), "col"), "row")
+					+ "</div></div>");
 		}
 	}
-	
-	
+
 	// Service implementation
-	private void getStudents(){
+	private void getStudents() {
 		if (studentService == null) {
 			studentService = GWT.create(StudentService.class);
 		}
-		
+
 		AsyncCallback<List<Student>> callback = new AsyncCallback<List<Student>>() {
 
 			@Override
@@ -149,9 +153,9 @@ public class SecondProject implements EntryPoint {
 
 			@Override
 			public void onSuccess(List<Student> result) {
-				
+				studentList.setRowData(result);
 			}
 		};
-		studentService.getStudents("", "", callback);
+		studentService.getStudents(null, null, callback);
 	}
 }
