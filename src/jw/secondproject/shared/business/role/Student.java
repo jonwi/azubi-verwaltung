@@ -3,15 +3,15 @@ package jw.secondproject.shared.business.role;
 public class Student extends User {
 
 	private String name;
-	
+
 	private String vorname;
-	
+
 	private String klasse;
-	
+
 	private String betrieb;
-	
+
 	private boolean vollzeit;
-	
+
 	public Student(int nr) {
 		super(nr);
 	}
@@ -38,9 +38,8 @@ public class Student extends User {
 
 	@Override
 	public String toString() {
-		return "Student [name=" + name + ", vorname=" + vorname + ", klasse=" + klasse + ", betrieb=" + betrieb
-				+ ", vollzeit=" + vollzeit + "]";
+		return "Student [" + nr + " name=" + name + ", vorname=" + vorname + ", klasse=" + klasse + ", betrieb="
+				+ betrieb + ", vollzeit=" + vollzeit + "]";
 	}
 
-		
 }
