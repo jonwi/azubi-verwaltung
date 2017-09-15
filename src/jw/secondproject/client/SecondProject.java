@@ -115,6 +115,7 @@ public class SecondProject implements EntryPoint {
 
 		@Override
 		public void render(Context context, Student value, SafeHtmlBuilder sb) {
+			String cell = "<div></div>";
 			sb.append(context.getIndex() + 1);
 			sb.appendEscaped(value.toString());
 		}
