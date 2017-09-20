@@ -33,7 +33,7 @@ public class Database {
 			// STEP 4: Execute a query
 			stmt = conn.createStatement();
 			String sql;
-			sql = "SELECT name, vorname, matrikelnummer FROM students";
+			sql = "SELECT id, name, vorname, matrikelnummer FROM students";
 			if (name != null && vorname != null && !name.isEmpty() && !vorname.isEmpty()) {
 				sql += " WHERE ";
 			}
